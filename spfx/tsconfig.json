@@ -1,0 +1,22 @@
+{
+  "extends": "./node_modules/@microsoft/spfx-web-build-rig/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "declaration": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "outDir": "lib",
+    "noImplicitAny": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["webpack-env"],
+    "resolveJsonModule": true,
+    "baseUrl": "."
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

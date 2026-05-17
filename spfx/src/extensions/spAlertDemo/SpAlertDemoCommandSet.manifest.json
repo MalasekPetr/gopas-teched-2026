@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/command-set-extension-manifest.schema.json",
+  "id": "8a4b6e2c-1c4f-4b2a-9c7e-1a0e7a2d4b11",
+  "alias": "SpAlertDemoCommandSet",
+  "componentType": "Extension",
+  "extensionType": "ListViewCommandSet",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "items": {
+    "SET_ALERT": {
+      "title": { "default": "Set Alert" },
+      "iconImageUrl": "icons/alert.png",
+      "type": "command"
+    }
+  }
+}

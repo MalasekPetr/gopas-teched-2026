@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-alert-demo",
+    "id": "8a4b6e2c-1c4f-4b2a-9c7e-1a0e7a2d4b10",
+    "version": "0.1.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "TechEd 2026 Demo",
+      "websiteUrl": "https://malachis.eu/alerts-365",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": ""
+    },
+    "metadata": {
+      "shortDescription": { "default": "Set Alert command — TechEd 2026 demo" },
+      "longDescription": { "default": "Replaces native SharePoint alerts with an SPFx command set." }
+    }
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-alert-demo.sppkg"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/spfx-serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://{tenantDomain}/sites/AlertsDemo/Lists/Demo/AllItems.aspx",
+      "customActions": {
+        "8a4b6e2c-1c4f-4b2a-9c7e-1a0e7a2d4b11": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": { "backendBaseUrl": "https://your-app.azurewebsites.net" }
+        }
+      }
+    }
+  },
+  "initialPage": "https://{tenantDomain}/_layouts/workbench.aspx"
+}

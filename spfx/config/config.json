@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-alert-demo-command-set": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/spAlertDemo/SpAlertDemoCommandSet.js",
+          "manifest": "./src/extensions/spAlertDemo/SpAlertDemoCommandSet.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SpAlertDemoCommandSetStrings": "lib/extensions/spAlertDemo/loc/{locale}.js"
+  }
+}

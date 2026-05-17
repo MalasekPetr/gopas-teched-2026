@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem c:\\\\Repos\\\\GOPAS\\\\ -Directory | Select-Object Name; Get-ChildItem c:\\\\Repos\\\\ -Directory | Where-Object { $_.Name -match 'alert' } | Select-Object FullName)",
+      "PowerShell(npm view @microsoft/sp-module-interfaces versions --json)",
+      "PowerShell(npm view @microsoft/sp-listview-extensibility versions --json)",
+      "PowerShell(npm view @microsoft/sp-build-web@1.23.0 peerDependencies engines)",
+      "PowerShell(npm view @microsoft/sp-core-library@1.23.0 peerDependencies)",
+      "PowerShell(npm view @microsoft/sp-listview-extensibility@1.23.0 peerDependencies dependencies)",
+      "PowerShell(npm view @microsoft/eslint-config-spfx versions --json)",
+      "PowerShell(npm view @microsoft/rush-stack-compiler-4.7 versions --json 2>&1)",
+      "PowerShell(npm view @microsoft/sp-build-web@1.23.0 dependencies)",
+      "Bash(node -e \"console.log\\(process.arch, process.platform\\)\")",
+      "Bash(find /c/Repos/MIS -maxdepth 3 -name 'package.json' -not -path '*/node_modules/*' 2>&1 | head -20)",
+      "Read(//c/Repos/MIS/**)",
+      "Bash(find /c/Repos/MIS -maxdepth 3 -name '.npmrc' -o -name '*.ps1' 2>&1 | head -20)",
+      "Bash([ -d \"/c/Repos/MIS/$d/app/node_modules/sass-embedded-win32-x64\" ])",
+      "Bash([ -d \"/c/Repos/MIS/$d/app/node_modules/sass-embedded-win32-arm64\" ])",
+      "PowerShell(Get-Command node -All)",
+      "PowerShell(node -e \"console.log\\(process.arch\\)\")",
+      "PowerShell(npm exec -- node -e \"console.log\\(process.arch\\)\")"
+    ]
+  }
+}
