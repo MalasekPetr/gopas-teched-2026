@@ -5,9 +5,8 @@ import { manageSubscriptionsRouter } from "./routes/manageSubscriptions.js";
 
 const app = express();
 
-// SharePoint sends application/json notifications, but the handshake is plain text.
+// Graph posts JSON notifications, plus an empty-body POST for the validation handshake.
 app.use(express.json());
-app.use(express.text({ type: "text/plain" }));
 
 app.use("/webhook", webhookRouter);
 app.use("/manage-subscriptions", manageSubscriptionsRouter);

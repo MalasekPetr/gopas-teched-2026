@@ -4,16 +4,16 @@ import { processNotification } from "../services/changeService.js";
 
 export const webhookRouter = Router();
 
-interface SpNotification {
+interface GraphNotification {
   subscriptionId: string;
-  resource: string; // list GUID
-  siteUrl: string; // server-relative path of the site
+  resource: string; // "sites/{site-id}/lists/{list-id}"
+  clientState?: string;
   tenantId: string;
 }
 
 webhookRouter.post("/", async (req, res) => {
-  // STEP 1: Handshake — SharePoint POSTs with ?validationToken=... and expects
-  // the raw token echoed back as text/plain within 5 seconds. No auth, no body.
+  // STEP 1: Handshake — Graph POSTs with ?validationToken=... and expects the
+  // raw token echoed back as text/plain within 10 seconds.
   const validationToken = req.query.validationToken;
   if (typeof validationToken === "string") {
     res.set("Content-Type", "text/plain").status(200).send(validationToken);
@@ -21,24 +21,30 @@ webhookRouter.post("/", async (req, res) => {
   }
 
   // Real notification — ack FAST, then process asynchronously.
-  // SharePoint retries if we don't return within 5 seconds.
   res.status(202).end();
 
-  const notifications: SpNotification[] = req.body?.value ?? [];
+  const notifications: GraphNotification[] = req.body?.value ?? [];
   if (!notifications.length) return;
 
   try {
     const defs = await getActiveDefinitions();
     for (const n of notifications) {
-      // siteUrl in the payload is server-relative — combine with tenant host.
-      const absoluteSiteUrl = `${process.env.SHAREPOINT_TENANT}${n.siteUrl}`;
+      const parsed = parseResource(n.resource);
+      if (!parsed) continue;
       const matching = defs.filter(
-        (d) => d.watchedListId.toLowerCase() === n.resource.toLowerCase()
+        (d) => d.watchedListId.toLowerCase() === parsed.listId.toLowerCase()
       );
       if (!matching.length) continue;
-      await processNotification(absoluteSiteUrl, n.resource, matching);
+      await processNotification(parsed.siteId, parsed.listId, matching);
     }
   } catch (err) {
     console.error("webhook processing failed", err);
   }
 });
+
+// Graph subscription resource looks like
+// "sites/contoso.sharepoint.com,GUID,GUID/lists/GUID"
+function parseResource(resource: string): { siteId: string; listId: string } | null {
+  const m = /^sites\/([^/]+)\/lists\/([^/]+)/.exec(resource);
+  return m ? { siteId: m[1], listId: m[2] } : null;
+}
